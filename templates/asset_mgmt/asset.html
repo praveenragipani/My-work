@@ -1,0 +1,229 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block title %}
+Product Catalog | List of DnA Solutions
+{% endblock title %}
+
+{% block content %}
+
+<div class="ui container p-t-5">
+  <div class="ui segment">
+    <span></span>
+    <span class="ui huge header">
+        Product Catalog
+    </span>
+
+  <!-- FILTER BLOCK -->
+  <div class="ui inverted segment">
+    <div class="ui inverted form">
+
+   <form method="GET">
+   {% csrf_token %}
+       <input id="id_show" type="hidden" value="{{ type_asset }}">
+
+  {{ filter.form.non_field_errors }}
+
+  {{ filter.form.source.errors }}
+  {{ filter.form.source }}
+       <div class="three fields">
+       <div class="field">
+           <label style="color:#2ECCFA;">Name and Description</label>
+           <input type="text" name="tag_search" id="id_tag_search" value="{{ product_name }}" placeholder="Contains text ...">
+       </div>
+           <div class="field">
+            <label style="color:#2ECCFA;">{{ filter.form.product_business.label_tag }}</label>
+           {{ filter.form.product_business.errors }}
+          {{ filter.form.product_business }}
+       </div>
+           <div class="field">
+           <label style="color:#2ECCFA;">{{ filter.form.business_area.label_tag }}</label>
+           {{ filter.form.business_area.errors }}
+              <div class="ui selection search dropdown">
+  <input type="hidden" id="id_business_area" name="business_area" value="{{ filter.form.business_area.value|default_if_none:'' }}">
+  <i class="remove icon"></i>
+  <i class="dropdown icon"></i>
+  <div class="default text">-----</div>
+  <div class="menu">
+      {% for area in filter.form.fields.business_area.queryset %}
+    <div class="item" data-value="{{ area.id }}">{{ area.name }}</div>
+{% endfor %}
+  </div>
+</div>
+           </div>
+       </div>
+
+         <div class="three fields">
+           <div class="field">
+          <label style="color:#2ECCFA;">{{ filter.form.analytic_focus.label_tag }}</label>
+           {{ filter.form.analytic_focus.errors }}
+          <div class="ui selection search dropdown">
+  <input type="hidden" id="id_analytic_focus" name="analytic_focus" value="{{ filter.form.analytic_focus.value|default_if_none:'' }}">
+  <i class="remove icon"></i>
+  <i class="dropdown icon"></i>
+  <div class="default text">-----</div>
+  <div class="menu">
+      {% for focus in filter.form.fields.analytic_focus.queryset %}
+    <div class="item" data-value="{{ focus.id }}">{{ focus.name }}</div>
+{% endfor %}
+  </div>
+</div>
+           </div>
+           <div class="field">
+           <label style="color:#2ECCFA;">{{ filter.form.provider_focus.label_tag }}</label>
+           {{ filter.form.provider_focus.errors }}
+                                  <div class="ui selection search dropdown">
+  <input type="hidden" id="id_provider_focus" name="provider_focus" value="{{ filter.form.provider_focus.value|default_if_none:'' }}">
+  <i class="remove icon"></i>
+  <i class="dropdown icon"></i>
+  <div class="default text">-----</div>
+  <div class="menu">
+      {% for focus in filter.form.fields.provider_focus.queryset %}
+    <div class="item" data-value="{{ focus.id }}">{{ focus.name }}</div>
+{% endfor %}
+  </div>
+</div>
+           </div>
+           <div class="field">
+           <label style="color:#2ECCFA;">{{ filter.form.utilization_category.label_tag }}</label>
+           {{ filter.form.utilization_category.errors }}
+          {{ filter.form.utilization_category }}
+           </div>
+
+
+       </div>
+    <button type="submit" id="id_button_form" class="ui mini blue button">Search Solutions</button>
+       <a href="{% url 'assets:asset_search' %}" class="ui basic mini yellow right floated button">Reset Filters</a>
+       <div class="ui mini green button" id="button_save">Save Search</div>
+<div class="ui flowing popup top left transition hidden">
+  <div class="content">
+      <span style="color:#1F2792;font-weight:bold"> Saving Quick Search! </span>
+      <div class="ui divider"></div>
+  <div class="ui inverted segment">
+    <div class="ui inverted form">
+
+       <div class="one field">
+           <div class="field">
+           <label style="color:#2ECCFA;">Search Name</label>
+           <input type="text" name="sav_search" id="quick_search" value="" placeholder="Name for search ...">
+       </div>
+           <a class="ui mini green button" id="save_to">Save it!</a>
+       </div>
+    </div>
+  </div>
+  </div>
+</div>
+  </form>
+
+    </div>
+
+  </div>
+      {% if messages %}
+
+    {% for message in messages %}
+      <div class="ui {{ message.tags }} message">
+        <i class="close icon"></i>
+      <p class="{{ message.tags }}">{{ message }}</p>
+      </div>
+    {% endfor %}
+
+{% endif %}
+ <h4 class='ui horizontal divider header'>{% if filter.total == 1 %} 1 Solution {% else %}{{ filter.total }} Solutions {% endif %}</h4>
+<div class='ui divided very relaxed items'>
+  {% for asset in products %}
+
+      <div class='item'>
+          <div class='image'>
+              {% if asset.image_url %}
+                <img src="/media/{{asset.image_url}}" class='ui small image'>
+              {% elif asset.asset_type.id == 1 %}
+                  <img src="{% static 'images/tableau-icon.png' %}" class='ui small image'>
+              {% elif asset.asset_type.id == 2 %}
+
+                  <img src="{% static 'images/alteryx_icon2.png' %}" class='ui small image'>
+              {% endif %}
+
+          </div>
+          <div class='content'>
+              <div class='right floated blah'></div>
+              <a href='{{asset.asset_url}}' target='_blank' class='ui large violet header' data-tooltip='View in the Alteryx or Tableau Gallery' data-inverted=''>{{ asset.name }}</a>
+                  {% for favorite in asset.asset_favorite.all%}
+                    {% if request.user.profile == favorite.user %}
+                    <img src="{% static 'images/favorite.png' %}">
+                    {% endif %}
+                  {% endfor %}
+
+              <div class='meta' align="left">
+                        developed by <a href='' class='ui tiny header'>{{ asset.asset_developer }}</a>
+                        <img class='ui avatar image popper' src="{% static 'images/generic-user-icon.png' %}" data-html='<div class=\"ui items\"><div class=\"item\">
+                          <div class=\"middle aligned content\">
+                            <div class=\"description\">{{ asset.asset_developer.title }}</div>
+                    </div>
+                        </div></div>' data-variation='very wide'>
+
+              </div>
+              <div class='description'>
+
+                    <div class='m-b-1'><strong>Business Owner:&nbsp;&nbsp;&nbsp;</strong><a href='' class='ui tiny blue header'>{{ asset.business_owner }}</a> ({{ asset.business_owner.title }})</div>
+
+                        <div class='m-b-9'><strong>Business Process Area:&nbsp;&nbsp;&nbsp;</strong>
+                            <a href="" class="ui small circular label" data-tooltip="{{ asset.business_area }}" data-position="top right" data-inverted="">{{ asset.business_area }}</a>
+                        </div>
+                        <div class='m-b-9'><strong>Line of Business:&nbsp;&nbsp;&nbsp;</strong>
+                            {% for product in asset.product_business.all %}
+                            <a href="" class="ui small circular label" data-tooltip="{{ product }}" data-position="top right" data-inverted="">{{ product }}</a>
+                            {% endfor %}
+                        </div>
+                        <div class='m-b-9'><strong>Analytic Focus Area:&nbsp;&nbsp;&nbsp;</strong>
+                            <a href="" class="ui small circular label" data-tooltip="{{ asset.analytic_focus }}" data-position="top right" data-inverted="">{{ asset.analytic_focus }}</a>
+                        </div>
+                        <div class=''><strong>Provider Focus:&nbsp;&nbsp;&nbsp;</strong>
+                            <a href="" class="ui small circular label" data-tooltip="{{ asset.provider_focus }}" data-position="top right" data-inverted="">{{ asset.provider_focus }}</a>
+                        </div>
+                        <div class='m-b-9'><strong>Analytic Type:&nbsp;&nbsp;&nbsp;</strong>
+                            <a href="" class="ui small circular label" data-tooltip="{{ asset.analytic_type }}" data-position="top right" data-inverted="">{{ asset.analytic_type }}</a>
+                        </div>
+                        <div class='m-b-9'><strong>Utilization Category:&nbsp;&nbsp;&nbsp;</strong>
+                            {% for utilization in asset.utilization_category.all %}
+                            <a href="" class="ui small circular label" data-tooltip="{{ utilization }}" data-position="top right" data-inverted="">{{ utilization }}</a>
+                            {% endfor %}
+                        </div>
+                        <div class='m-b-9'><strong>Runs or Views:&nbsp;&nbsp;&nbsp;</strong>
+                            <a href="" class="ui small circular label" data-tooltip="{{ asset.use_count }}" data-position="top right" data-inverted="">{{ asset.use_count }}</a>
+                        </div>
+                      </div>
+                                      <a href="{% url 'assets:detail' asset.id %}" class='ui mini right floated basic blue button'>
+                                  More...
+                                </a>
+          </div>
+
+      </div>
+
+  {% endfor %}
+ </div>
+      {% if products.has_other_pages %}
+        <div class="ui pagination menu" align="center">
+    {% if products.has_previous %}
+      <a class="item" href="?page={{ users.previous_page_number }}">&laquo;</a>
+    {% else %}
+      <a class="disabled item"><span>&laquo;</span></a>
+    {% endif %}
+    {% for i in products.paginator.page_range %}
+      {% if products.number == i %}
+        <a class="active item"><span style="font-weight: bold;">{{ i }} <span class="sr-only">(*)</span></span></a>
+      {% else %}
+        <a class="item" href="?page={{ i }}">{{ i }}</a>
+      {% endif %}
+    {% endfor %}
+    {% if products.has_next %}
+      <a class="item" href="?page={{ users.next_page_number }}">&raquo;</a>
+    {% else %}
+      <a class="disabled item"><span>&raquo;</span></a>
+    {% endif %}
+  </div>
+{% endif %}
+  </div>
+
+</div>
+
+
+{% endblock content %}

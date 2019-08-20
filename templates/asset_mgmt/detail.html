@@ -1,0 +1,131 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+DnA Product Details
+{% endblock title %}
+
+{% block content %}
+<div class="ui container p-t-5">
+  <div class="ui segment">
+
+    <span></span>
+    <span class="ui huge header">
+        DnA Solution information
+    </span>
+    <div class="ui right floated mini buttons">
+      <a href="{% url 'assets:asset_search' %}" class="ui green button">Back to All Solutions</a>
+    </div>
+  <div class="ui divider"></div>
+      <div class='ui divided very relaxed items'>
+
+            <div class='item'>
+                 <div class='image' align="right">
+                                    {% if asset.image_url %}
+                <img src="/media/{{asset.image_url}}" class='ui small image'>
+                      {% elif asset.asset_type.id == 1 %}
+                      <img src="{% static 'images/tableau-icon.png' %}" class='ui small image'>
+                      {% elif asset.asset_type.id == 2 %}
+                      <img src="{% static 'images/alteryx_icon2.png' %}" class='ui small image'>
+                      {% else %}
+                      <i class='laptop icon'></i>
+                      {% endif %}
+                  </div>
+
+                  <div class='content'>
+
+                  <div class='right floated blah'>
+
+                  </div>
+              <input type="hidden" value="{{asset.id}}" id="assetpk">
+              <a href="{{asset.asset_url}}" target='_blank' class='ui large violet header' data-tooltip='View in the Alteryx Gallery' data-inverted=''>{{asset.name}}</a>
+                      {% if fav %}
+                      <img src="{% static 'images/favorite.png' %}" class="assetfav">
+                      {% else %}
+                      <img src="{% static 'images/nofavorite.png' %}" class="assetfav">
+                      {% endif %}
+                      <div class='meta'>
+                      <div class='p-b-1'>
+                      <b>{{asset.asset_type}}</b> developed by <a class='ui tiny header'>{{asset.asset_developer}}</a>
+                        <img class='ui avatar image popper' src="{% static 'images/generic-user-icon.png' %}" data-html='<div class=\"ui items\"><div class=\"item\">
+
+                          <div class=\"middle aligned content\">
+                            <div class=\"description\">{{ asset.asset_developer.title }}</div>
+                    </div>
+                        </div></div>' data-variation='very wide'>
+                        </div>
+                        {{asset.description}}
+                        <div class='ui divider'></div>
+                      </div>
+                      <div class='description'>
+
+                    <div class='m-b-1'><strong>Business Owner:&nbsp;&nbsp;&nbsp;</strong><a href='' class='ui tiny blue header'>{{ asset.business_owner }}</a>({{ asset.business_owner.title }})</div>
+
+                        <div class='m-b-9'><strong>Business Process Area:&nbsp;&nbsp;&nbsp;</strong>
+                            <a href="" class="ui small circular label" data-tooltip="{{ asset.business_area }}" data-position="top right" data-inverted="">{{ asset.business_area }}</a>
+                        </div>
+                        <div class='m-b-9'><strong>Line of Business:&nbsp;&nbsp;&nbsp;</strong>
+                            {% for product in asset.product_business.all %}
+                            <a href="" class="ui small circular label" data-tooltip="{{ product }}" data-position="top right" data-inverted="">{{ product }}</a>
+                            {% endfor %}
+                        </div>
+                        <div class='m-b-9'><strong>Analytic Focus Area:&nbsp;&nbsp;&nbsp;</strong>
+                            <a href="" class="ui small circular label" data-tooltip="{{ asset.analytic_focus }}" data-position="top right" data-inverted="">{{ asset.analytic_focus }}</a>
+                        </div>
+                        <div class=''><strong>Provider Focus:&nbsp;&nbsp;&nbsp;</strong>
+                            <a href="" class="ui small circular label" data-tooltip="{{ asset.provider_focus }}" data-position="top right" data-inverted="">{{ asset.provider_focus }}</a>
+                        </div>
+                        <div class='m-b-9'><strong>Analytic Type:&nbsp;&nbsp;&nbsp;</strong>
+                            <a href="" class="ui small circular label" data-tooltip="{{ asset.analytic_type }}" data-position="top right" data-inverted="">{{ asset.analytic_type }}</a>
+                        </div>
+                        <div class='m-b-9'><strong>Utilization Category:&nbsp;&nbsp;&nbsp;</strong>
+                            {% for utilization in asset.utilization_category.all %}
+                            <a href="" class="ui small circular label" data-tooltip="{{ utilization }}" data-position="top right" data-inverted="">{{ utilization }}</a>
+                            {% endfor %}
+                        </div>
+                      </div>
+                               <a href="{% url 'assets:update' asset.id %}" class='ui right floated red label'>
+                                  Edit
+                                </a>
+                  </div>
+                </div>
+      </div>
+
+              <div class='ui four small steps'>
+                <div class='active step'>
+                  <i class='film icon'></i>
+                  <div class='content'>
+                    <div class='title'>Created</div>
+                    <div class='description'>{{asset.created_at}}</div>
+                  </div>
+                </div>
+                <div class='active step'>
+                  <i class='cloud upload icon'></i>
+                  <div class='content'>
+                    <div class='title'>Published</div>
+                    <div class='description'><b>{{asset.published_at}}</b></div>
+                  </div>
+                </div>
+                <div class='active step'>
+                  <i class='edit icon'></i>
+                  <div class='content'>
+                    <div class='title'>Modified</div>
+                    <div class='description'><b>{{asset.modified_at}}</b></div>
+                  </div>
+                </div>
+                <div class='active step'>
+                  <i class='user icon'></i>
+                  <div class='content'>
+                    <div class='title'>Runs or Views</div>
+                    <div class='description'>{{asset.use_count}}</div>
+                  </div>
+                </div>
+              </div>
+
+<!-- Comments -->
+
+<!-- End Comments -->
+
+  </div>
+</div>
+
+{% endblock content %}

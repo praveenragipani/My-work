@@ -1,0 +1,505 @@
+{% load static %}
+<!DOCTYPE html>
+<html>
+<head>
+
+  <!-- Standard Meta -->
+  <meta charset="utf-8" />
+  <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0">
+  <meta name="description" content="Marketing Analytics">
+  <meta name="author" content="Taylor Cox">
+
+  <!-- Site Properties -->
+  <title>Marketing Analytics | Asset Catalog</title>
+  <link rel="icon" type="image/png" href="{% static 'images/favicon.png' %}">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static '/css/cfb.css' %}">
+  <link rel="icon" src="{% static 'images/student_logo.png' %}">
+</head>
+
+<!-- Body -->
+<body>
+
+    <!-- Sidebar Menu -->
+    <div class="ui sidebar inverted vertical labeled icon menu">
+      <a href="ROOT" class="item">
+        <img src="{% static 'images/student_logo.png' %}" height="35" alt="CFBP">
+      </a>
+      <a href="HOME" class="item">
+        <i class="green home icon"></i>
+        Home
+      </a>
+      GUEST<a href='LINK TO ALTERYX' class='login-button item'>
+                    <i class='laptop icon'></i>
+                    Alteryx
+                  </a>
+                  <a href='LINK TO TABLEAU' class='login-button item'>
+                    <i class='dashboard icon'></i>
+                    Tableau
+                  </a>
+                  <a href='LINK TO TEAM' class='login-button item'>
+                    <i class='group icon'></i>
+                    Our Team
+                  </a>
+          USER<a href='LINK TO ALTERYX' class='item'>
+                      <!-- <i class='laptop icon'></i> -->
+                      <img class='ui centered mini image p-b-1' src="{% static 'images/alteryx_icon.png' %}">
+                      Alteryx
+                    </a>
+                    <a href='LINK TO TABLEAU' class='item'>
+                      <!-- <i class='dashboard icon'></i> -->
+                      <img class='ui centered mini image p-b-1' src="{% static 'images/tableau-icon.png' %}">
+                      Tableau
+                    </a>
+                    <a href="LINK TO TEAM" class="item">
+                      <i class="yellow group icon"></i>
+                      The Team
+                    </a>
+                    ADMIN<a href="ADMIN" class="item">
+                              <i class="red settings icon"></i>
+                              Admin
+                            </a>
+    </div>
+
+    <!-- Body / Main Content -->
+    <div class="pusher wrapper">
+
+      <!-- Horizontal Menu -->
+
+        <div class="ui inverted massive top fixed menu">
+          <!-- <div class="item"> -->
+          <a href="LINK TO ROOT">
+            <img src="{% static 'images/student_logo.png' %}" class="image" height="32" style="margin: 10px 10px 0px 10px" alt="BCBSNC">
+          </a>
+          <!-- </div> -->
+          <a class="view-ui item">
+            <i class="sidebar icon"></i> Menu
+          </a>
+          <div class="ui inverted category search item public-search">
+            <div class="ui transparent icon input">
+              <input class="prompt" style="color:#ffffff;" type="text" placeholder="Search content...">
+              <i class="inverted search link icon"></i>
+            </div>
+            <div class="results"></div>
+          </div>
+          GUEST<a class="right menu item login-button">
+                        <i class='blue sign in icon'></i> Login
+               </a>
+             <span style='width: 100%;'>
+                      <img style='margin: 0px 0px; padding: 0px 0px; float: right;' height='52' src="{% static 'images/me.jpg' %}">
+             </span>
+                    <a class='right menu item'>
+                      <div class='ui dropdown'>
+                        <div class='text'>Yoelvis Oses</div>
+                        <i class='dropdown icon'></i>
+                        <div class='menu'>
+                          <div class='item sign-out'>
+                            <i class='red sign out icon'></i>
+                            Sign Out
+                          </div>
+                        </div>
+                      </div>
+                    </a>
+        </div>
+
+<!-- Main Content -->
+<div class="ui container p-t-5">
+  <div class="ui segment">
+    <span></span>
+    <span class="ui huge header">
+      <i class="dashboard icon"></i>
+        Asset Catalog Searches
+    </span>
+    &nbsp;&nbsp;&nbsp;
+    <i class='green refresh icon'></i> Updated 1/23/2019 at 2:41 PM
+   <a href='LINK' class='item'>Workflow</a>
+   <a href='LINK' class='item'>Studio Name</a>
+
+  <!-- FILTER BLOCK -->
+  <div class="ui inverted segment">
+    <div class="ui inverted form">
+
+        <!-- first row filters -->
+        <div class="four fields">
+
+          <div class="field">
+            <label style="color:#2ECCFA;">Content Type</label>
+            <div class="ui selection dropdown">
+              <i class="dropdown icon"></i>
+              <div class="text">Types</div>
+              <div class="menu">
+                Type A
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label style="color:#2ECCFA;">Studio</label>
+            <div class="ui selection dropdown">
+              <i class="dropdown icon"></i>
+              <div class="text">Studios</div>
+              <div class="menu">
+                Studio A
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label style="color:#2ECCFA">Developer</label>
+            <div class="ui selection dropdown">
+              <i class="dropdown icon"></i>
+              <div class="text">Developers</div>
+              <div class="menu">
+                Developer A
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Data Source</label>
+            <div class="ui selection dropdown">
+              <i class="dropdown icon"></i>
+              <div class="text">Sources</div>
+              <div class="menu">
+                Data Source A
+              </div>
+            </div>
+          </div>
+
+        </div>
+
+        <!-- Second row filters -->
+        <div class="four fields">
+
+          <div class="field">
+            <label>Business Area</label>
+            <div class="ui selection dropdown">
+              <i class="dropdown icon"></i>
+              <div class="text">Areas</div>
+              <div class="menu">
+                Business Area A
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Business Owner</label>
+            <div class="ui selection dropdown">
+              <i class="dropdown icon"></i>
+              <div class="text">Owners</div>
+              <div class="menu">
+                Business Owner A
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Product Group</label>
+            <div class="ui selection dropdown">
+              <i class="dropdown icon"></i>
+              <div class="text">Groups</div>
+              <div class="menu">
+                  <div class="item" data-value="a">Product Group A</div>
+
+              </div>
+            </div>
+          </div>
+          <div class="field">
+            <label>Capability</label>
+            <div class="ui selection dropdown">
+              <i class="dropdown icon"></i>
+              <div class="text">Capabilities</div>
+              <div class="menu">
+                Capability A
+              </div>
+            </div>
+          </div>
+
+        </div>      
+        
+    </div>
+
+    <span class="m-r-1">
+        <i class="blue filter icon"></i>
+        <span style="color:#2ECCFA;">=&nbsp;&nbsp;Alteryx</span>
+    </span>
+    <span><i class="filter icon"></i>=&nbsp;&nbsp;user-defined tags &amp; meta</span>
+
+    <a href="./" class="ui basic mini grey right floated button">Reset Filters</a>
+
+  </div>
+ <h4 class='ui horizontal divider header'>20 Assets</h4>
+        <div class='ui center aligned basic segment'>
+      <div class='ui compact buttons'>
+        <a href='LINK POPULARITY' class='ui compact active button' data-tooltip='Sort by Run Count' data-inverted=''>
+          <i class='sort numeric descending icon'></i>Popularity
+        </a>
+        <a href='LINK NAME' class='ui compact active button' data-tooltip='Sort by Name' data-inverted=''>
+          <i class='sort alphabet ascending icon'></i>Name
+        </a>
+        <a href='LINK MODIFIED' class='ui compact active button' data-tooltip='Sort by Date Modified' data-inverted=''>
+          <i class='sort content descending icon'></i>Modified
+        </a>
+        <a href='LINK CREATED' class='ui compact active button' data-tooltip='Sort by Date Published' data-inverted=''>
+          <i class='sort content descending icon'></i>Published
+        </a>
+      </div>
+    </div>
+
+        <div class='ui divided very relaxed items'>
+            List here
+
+        <a href='LINK to Data Source' class='ui small circular label' data-tooltip='$dataDesc' data-position='top right' data-inverted=''>Data Source</a>";
+        <a href='LINK to Business Area' class='ui small circular label' data-tooltip='$baDesc' data-position='top right' data-inverted=''>Business Area</a>";
+        <a href='LINK to Product Group' class='ui small circular label' data-tooltip='$pgDesc' data-position='top right' data-inverted=''>Product Group</a>";
+        <a href='LINK to Capability' class='ui small circular label' data-tooltip='$cDesc' data-position='top right' data-inverted=''>Capability</a>";
+        <a href='KUDOS' class='ui mini statistic p-t-2' data-tooltip='Give Kudos!' data-position='top right' data-inverted=''>
+                          <div class='value'>
+                            <i class='green thumbs outline up icon'></i> 6
+                          </div>
+                        </a>
+
+        <a href='More Comments' class='ui mini statistic p-t-2' data-tooltip='comment' data-position='top right' data-inverted=''>
+                          <div class='value'>
+                            <i class='blue talk outline icon'></i> 6
+                          </div>
+                        </a>
+                <div class='item'>
+                  <div class='image'>
+                    <img src="{% static 'images/834.JPG' %}" class='ui medium image'>
+                  </div>
+                  <div class='content'>
+
+
+                  <div class='right floated blah'>
+                  </div>
+
+              <a href='ASSET URL' target='_blank' class='ui large violet header' data-tooltip='View in the Alteryx Gallery' data-inverted=''>Asset Name</a>
+                      <div class='meta'>
+                        developed by <a href='LINK to Owner' class='ui tiny header'>Yoelvis Oses</a>
+                        <img class='ui avatar image popper' src="{% static 'images/me.jpg' %}" data-html='<div class=\"ui items\"><div class=\"item\">
+                          <a class=\"ui tiny image\">
+                            <img src=\"{% static 'images/me.jpg' %}"\">
+                          </a>
+                          <div class=\"middle aligned content\">
+                            <div class=\"header\">Sr. Software Engineer</div>
+                            <div class=\"description\">Sr. Software Engineer</div>
+
+
+                                <div class=\"extra\">
+                                        <a>
+                                          <i class=\"thumbs up outline icon\"></i>
+                                          10 Kudos Received
+                                        </a>
+                                       </div>
+
+
+                    </div>
+                        </div></div>' data-variation='very wide'>
+
+                </div>
+
+                <div class='description'>
+
+                    <div class='m-b-1'><strong>Business Owner:&nbsp;&nbsp;&nbsp;</strong><a href='LINK to Business Owner' class='ui tiny blue header'>Aaron Kesler</a>, Project Manager</div>
+
+                        <div class='m-b-9'><strong>Business Area:&nbsp;&nbsp;&nbsp;</strong>Business Area B</div>
+                        <div class='m-b-9'><strong>Product Group:&nbsp;&nbsp;&nbsp;</strong>Product Group B</div>
+                        <div class='m-b-9'><strong>Data Sources:&nbsp;&nbsp;&nbsp;</strong>Data Source B</div>
+                        <div class=''><strong>Capability:&nbsp;&nbsp;&nbsp;</strong>Capability B</div>
+                      </div>
+                      <div class='extra'>
+                                <div class='ui mini statistic p-t-2' data-tooltip='Run times' data-position='top center' data-inverted=''>
+                                  <div class='value'>
+                                    <i class='red lightning icon'></i> 5
+                                  </div>
+                                </div>
+                          <div class='ui mini statistic p-t-2' data-tooltip="You have already given Kudos" data-position='top right' data-inverted=''>
+                          <div class='value'>
+                            <i class='green thumbs outline up icon'></i> 5
+                          </div>
+                        </div>
+        <a href='Comments' class='ui mini statistic p-t-2' data-tooltip='comments' data-position='top right' data-inverted=''>
+                          <div class='value'>
+                            <i class='blue talk outline icon'></i> 5
+                          </div>
+                        </a>
+
+                                <a href='Link to Asset Details' class='ui mini right floated basic blue button'>
+                                  More...
+                                </a>
+                      </div>
+                  </div>
+
+
+              </div>
+                </div>
+      <div class='ui four small steps'>
+                <div class='active step'>
+                  <i class='cloud upload icon'></i>
+                  <div class='content'>
+                    <div class='title'>Published</div>
+                    <div class='description'>07/05/2019</div>
+                  </div>
+                </div>
+                <div class='active step'>
+                  <i class='film icon'></i>
+                  <div class='content'>
+                    <div class='title'>Studio</div>
+                    <div class='description'><b>Marketing and Analytics</b></div>
+                  </div>
+                </div>
+                <div class='active step'>
+                  <i class='user icon'></i>
+                  <div class='content'>
+                    <div class='title'>Business Owner</div>
+                    <div class='description'><b>Aaron Kesler</b></div>
+                  </div>
+                </div>
+                <div class='active step'>
+                  <i class='edit icon'></i>
+                  <div class='content'>
+                    <div class='title'>Modified</div>
+                    <div class='description'>07/04/2019</div>
+                  </div>
+                </div>
+        </div>
+  </div>
+</div>
+</div><!-- END PUSHER -->
+<!-- Footer -->
+<div class="ui inverted vertical footer segment">
+  <div class="ui container">
+    <div class="ui stackable inverted divided equal height stackable grid">
+      <div class="three wide column">
+        <h4 class="ui inverted header">About</h4>
+        <div class="ui inverted link list">
+          <a href="ABOUT" class="item">What we do..</a>
+          <a href="mailto:CONTACT; ?>" target="_top" class="item">Contact</a>
+        </div>
+      </div>
+      <div class="three wide column">
+        <h4 class="ui inverted header">Services</h4>
+        <div class="ui inverted link list">
+          <a href="LINK to JIRA" class="item">Submit a Request</a>
+          <a href="FAQ" class="item">FAQ</a>
+        </div>
+      </div>
+      <div class="seven wide column">
+        <img src="{% static 'images/student_logo.png' %}" height="80" alt="CFBP">
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+
+<div class="ui page dimmer">
+  <div class="content">
+    <div class="ui middle aligned center aligned stackable grid">
+      <div class="computer only row">
+        <div class="four wide column">
+                    <h2 class="ui blue image header">
+                      <img src="{% static 'images/student_logo.png' %}" class="image">
+                      <div class="content">
+                        Login
+                      </div>
+                    </h2>
+                    <form class="ui form"  action="LINK to LOGIN" method="post">
+                      <div class="ui stacked segment">
+                        <div class="field">
+                          <div class="ui left icon input">
+                            <i class="user icon"></i>
+                            <input type="text" id="username" name="username" placeholder="LAN ID (U Number)">
+                          </div>
+                        </div>
+                        <div class="field">
+                          <div class="ui left icon input">
+                            <i class="lock icon"></i>
+                            <input type="password" name="password" placeholder="Password">
+                          </div>
+                        </div>
+                        <input class="ui fluid blue submit button" type="submit" value="Login">
+                        <div class="ui horizontal divider">
+                        Or
+                        </div>
+                        <a class="login-cancel">Cancel</a>
+                      </div>
+                      <div class="ui error message"></div>
+
+                    </form>
+          </div>
+        </div>
+        <div class="tablet only row">
+          <div class="eight wide column">
+                      <h2 class="ui blue image header">
+                        <img src="{% static 'images/student_logo.png' %}" height="35" class="image">
+                        <div class="content">
+                          Login
+                        </div>
+                      </h2>
+                      <form class="ui form"  action="LINK to LOGIN" method="post">
+                        <div class="ui stacked segment">
+                          <div class="field">
+                            <div class="ui left icon input">
+                              <i class="user icon"></i>
+                              <input type="text" id="username" name="username" placeholder="LAN ID (U Number)">
+                            </div>
+                          </div>
+                          <div class="field">
+                            <div class="ui left icon input">
+                              <i class="lock icon"></i>
+                              <input type="password" name="password" placeholder="Password">
+                            </div>
+                          </div>
+                          <input class="ui fluid blue submit button" type="submit" value="Login">
+                          <div class="ui horizontal divider">
+                          Or
+                          </div>
+                          <a class="login-cancel">Cancel</a>
+                        </div>
+
+                        <div class="ui error message"></div>
+
+                      </form>
+            </div>
+        </div>
+          <div class="mobile only row">
+            <div class="column">
+                        <h2 class="ui blue image header">
+                          <img src="{% static 'images/student_logo.png' %}" height="35" class="image">
+                          <div class="content">
+                            Login
+                          </div>
+                        </h2>
+                        <form class="ui form"  action="LINK to LOGIN" method="post">
+                          <div class="ui stacked segment">
+                            <div class="field">
+                              <div class="ui left icon input">
+                                <i class="user icon"></i>
+                                <input type="text" id="username" name="username" placeholder="LAN ID (U Number)">
+                              </div>
+                            </div>
+                            <div class="field">
+                              <div class="ui left icon input">
+                                <i class="lock icon"></i>
+                                <input type="password" name="password" placeholder="Password">
+                              </div>
+                            </div>
+                            <input class="ui fluid blue submit button" type="submit" value="Login">
+                            <div class="ui horizontal divider">
+                            Or
+                            </div>
+                            <a class="login-cancel">Cancel</a>
+                          </div>
+
+                          <div class="ui error message"></div>
+
+                        </form>
+              </div>
+          </div>
+    </div>
+  </div>
+</div>
+
+<!-- Javascript Load @ end of document to prevent bottlenecking page load -->
+<script src="https://code.jquery.com/jquery-3.1.1.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/semantic-ui@2.4.2/dist/semantic.min.js"></script>
+<script src="{%  static 'js/app.js' %}"></script>
+
+</html>

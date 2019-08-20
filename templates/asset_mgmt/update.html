@@ -1,0 +1,173 @@
+{% extends "base.html" %}
+{% load static %}
+{% block title %}
+DnA Product Editing
+{% endblock title %}
+
+{% block content %}
+<div class="ui container p-t-5">
+  <div class="ui segment">
+
+    <span></span>
+    <span class="ui huge header">
+        DnA Solution information
+    </span>
+    <div class="ui right floated mini buttons">
+      <a href="{% url 'assets:asset_search' %}" class="ui green button">Back to All Solutions</a>
+    </div>
+  <div class="ui divider"></div>
+      <div class='ui divided very relaxed items'>
+
+            <div class='item'>
+                 <div class='image' align="right">
+                                    {% if asset.image_url %}
+                <img src="/media/{{asset.image_url}}" class='ui small image'>
+                      {% elif asset.asset_type.id == 1 %}
+                      <img src="{% static 'images/tableau-icon.png' %}" class='ui small image'>
+                      {% elif asset.asset_type.id == 2 %}
+                      <img src="{% static 'images/alteryx_icon2.png' %}" class='ui small image'>
+                      {% else %}
+                      <i class='laptop icon'></i>
+                      {% endif %}
+                  </div>
+
+                  <div class='content'>
+
+                  <div class='right floated blah'>
+
+                  </div>
+              <input type="hidden" value="{{asset.id}}" id="assetpk">
+              <a href="{{asset.asset_url}}" target='_blank' class='ui large violet header' data-tooltip='View in the Alteryx Gallery' data-inverted=''>{{asset.name}}</a>
+                      <div class='meta'>
+                      <div class='p-b-1'>
+                      <b>{{asset.asset_type}}</b> developed by <a class='ui tiny header'>{{asset.asset_developer}}</a>
+                        <img class='ui avatar image popper' src="{% static 'images/generic-user-icon.png' %}" data-html='<div class=\"ui items\"><div class=\"item\">
+
+                          <div class=\"middle aligned content\">
+                            <div class=\"description\">{{ asset.asset_developer.title }}</div>
+                    </div>
+                        </div></div>' data-variation='very wide'>
+                        </div>
+                        <div class='ui divider'></div>
+                      </div>
+                       <div class='description'>
+                                 <div class="ui inverted segment">
+      <div class="ui inverted form">
+       <form action="" method="POST" enctype="multipart/form-data">
+    {% csrf_token %}
+      {{ form.non_field_errors }}
+           {{ form.source.errors }}
+  {{ form.source }}
+       <div class="two fields">
+       <div class="field">
+           <label style="color:#2ECCFA;">{{ form.description.label_tag }}</label>
+           {{ form.description.errors }}
+          {{ form.description }}
+       </div>
+          <div class="field">
+           <label style="color:#2ECCFA;">{{ form.business_owner.label_tag }}</label>
+           {{ form.business_owner.errors }}
+          {{ form.business_owner }}
+            <label style="color:#2ECCFA;">{{ form.product_business.label_tag }}</label>
+           {{ form.product_business.errors }}
+          {{ form.product_business }}
+             <label style="color:#2ECCFA;">{{ form.business_area.label_tag }}</label>
+           {{ form.business_area.errors }}
+              <div class="ui selection search dropdown">
+  <input type="hidden" id="id_business_area" name="business_area" value="{{asset.business_area|default_if_none:''}}">
+  <i class="remove icon"></i>
+  <i class="dropdown icon"></i>
+  <div class="default text">-----</div>
+  <div class="menu">
+      {% for area in form.fields.business_area.queryset %}
+    <div class="item" data-value="{{ area.id }}">{{ area.name }}</div>
+{% endfor %}
+  </div>
+</div>
+
+       </div>
+       </div>
+           <div class="two fields">
+       <div class="field">
+           <label style="color:#2ECCFA;">{{ form.analytic_focus.label_tag }}</label>
+           {{ form.analytic_focus.errors }}
+                        <div class="ui selection search dropdown">
+  <input type="hidden" id="id_analytic_focus" name="analytic_focus" value="{{asset.analytic_focus|default_if_none:''}}">
+  <i class="remove icon"></i>
+  <i class="dropdown icon"></i>
+  <div class="default text">-----</div>
+  <div class="menu">
+      {% for focus in form.fields.analytic_focus.queryset %}
+    <div class="item" data-value="{{ focus.id }}">{{ focus.name }}</div>
+{% endfor %}
+  </div>
+</div>
+       </div>
+       <div class="field">
+           <label style="color:#2ECCFA;">{{ form.provider_focus.label_tag }}</label>
+           {{ form.provider_focus.errors }}
+                                  <div class="ui selection search dropdown">
+  <input type="hidden" id="id_provider_focus" name="provider_focus" value="{{asset.provider_focus|default_if_none:''}}">
+  <i class="remove icon"></i>
+  <i class="dropdown icon"></i>
+  <div class="default text">-----</div>
+  <div class="menu">
+      {% for focus in form.fields.provider_focus.queryset %}
+    <div class="item" data-value="{{ focus.id }}">{{ focus.name }}</div>
+{% endfor %}
+  </div>
+</div>
+
+       </div>
+
+           </div>
+          <div class="two fields">
+       <div class="field">
+           <label style="color:#2ECCFA;">{{ form.analytic_type.label_tag }}</label>
+           {{ form.analytic_type.errors }}
+          {{ form.analytic_type }}
+       </div>
+       <div class="field">
+           <label style="color:#2ECCFA;">{{ form.utilization_category.label_tag }}</label>
+           {{ form.utilization_category.errors }}
+          {{ form.utilization_category }}
+       </div>
+
+           </div>
+                     <div class="two fields">
+       <div class="field">
+
+<label style="color:#2ECCFA;">{{ form.asset_active.label_tag }}</label>
+           {{ form.asset_active.errors }}
+               <div class="ui toggle checkbox">
+  <input type="checkbox" name="asset_active" id="id_asset_active" {% if asset.asset_active %}checked{% endif %}>
+
+        </div>
+
+       </div>
+       </div>
+       <div class="field">
+
+       </div>
+
+    <button type="submit" id="id_button_form" class="ui mini right green button">Update Solution</button>
+               <div class="ui right floated mini buttons">
+      <a href="{% url 'assets:detail' asset.id %}" class="ui red button">Cancel</a>
+    </div>
+    </form>
+      </div>
+      </div>
+                       </div>
+
+
+<!-- Comments -->
+
+<!-- End Comments -->
+
+  </div>
+</div>
+      </div>
+  </div>
+</div>
+
+{% endblock content %}
